@@ -19,7 +19,7 @@ var (
 // App acts as an updater and installer for proton-ge
 type App struct {
 	alwaysYes bool
-	force bool
+	force     bool
 }
 
 // NewApp creates a new application that's configured to install or update
@@ -27,7 +27,7 @@ type App struct {
 func NewApp(alwaysYes bool, force bool) *App {
 	return &App{
 		alwaysYes: alwaysYes,
-		force: force,
+		force:     force,
 	}
 }
 
@@ -38,7 +38,7 @@ func (a *App) InstallOrUpdate() error {
 	if err := a.initializeDirectories(); err != nil {
 		return fmt.Errorf("initialize directories: %w", err)
 	}
-	
+
 	log.Trace().Msg("downloading latest release info")
 	releaseInfo, err := downloadLatestReleaseInfo()
 	if err != nil {
@@ -52,7 +52,7 @@ func (a *App) InstallOrUpdate() error {
 	}
 
 	if !a.alwaysYes && !prompt("Would you like to continue with installation?", true) {
-		return nil	
+		return nil
 	}
 
 	log.Info().Msg("Downloading latest proton-ge release...")
@@ -80,7 +80,7 @@ func (a *App) InstallOrUpdate() error {
 	if err := a.moveDownloadedToArchive(tarBallName); err != nil {
 		return err
 	}
-	
+
 	// Remove the sha512sum file
 	sha512FileName := releaseInfo.Sha512SumName()
 	if err := os.Remove(sha512FileName); err != nil {
@@ -105,12 +105,12 @@ func (a *App) InstallOrUpdate() error {
 }
 
 func (a *App) moveDownloadedToArchive(n string) error {
-	path := cfg.ProtonDir()+"/"
+	path := cfg.ProtonDir() + "/"
 	_, err := runCommand("mv", n, path)
 	if err != nil {
 		return fmt.Errorf("move file: %w", err)
 	}
-	
+
 	log.Debug().Str("path", path+n).Msg("moved directory")
 
 	return nil
@@ -169,10 +169,9 @@ func (a *App) displayVersions(releaseInfo *Response, force bool) error {
 	fmt.Println(names.String())
 	fmt.Printf("To be downloaded and installed:\n    %s\n",
 		color.GreenString(latestTarBall))
-	
+
 	return nil
 }
-
 
 // Create working directories if they don't exist yet.
 func (a *App) initializeDirectories() error {
@@ -194,5 +193,3 @@ func createIfNotExists(path string) error {
 	}
 	return nil
 }
-
-

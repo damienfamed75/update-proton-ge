@@ -9,11 +9,11 @@ import (
 
 const (
 	// _protonDir = "/protonGE"
-	_protonDir = "/.local/proton-ge"
+	_protonDir             = "/.local/proton-ge"
 	_compatibilityToolsDir = "/.steam/root/compatibilitytools.d/"
 	// _lynxCmd = "lynx"
 
-	_envProtonDir = "PROTON_GE_ARCHIVE"
+	_envProtonDir             = "PROTON_GE_ARCHIVE"
 	_envCompatibilityToolsDir = "COMPATIBILITY_TOOLS_DIR"
 )
 
@@ -36,8 +36,8 @@ func init() {
 var cfg *Config
 
 type Config struct {
-	protonDir string
-	homeDir string
+	protonDir             string
+	homeDir               string
 	compatibilityToolsDir string
 }
 
@@ -48,9 +48,9 @@ func newConfig() *Config {
 	}
 
 	return &Config{
-		homeDir: homeDir,
-		protonDir: homeDir+_protonDir,
-		compatibilityToolsDir: homeDir+_compatibilityToolsDir,
+		homeDir:               homeDir,
+		protonDir:             homeDir + _protonDir,
+		compatibilityToolsDir: homeDir + _compatibilityToolsDir,
 	}
 }
 

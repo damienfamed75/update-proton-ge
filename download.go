@@ -3,9 +3,9 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
 	"os"
-	"io"
 	"strings"
 
 	"github.com/rs/zerolog/log"
@@ -14,8 +14,8 @@ import (
 // Response contains release information from github. Most importantly the names
 // of files to download and their corresponding download URLs.
 type Response struct {
-	Assets []struct{
-		Name string `json:"name"`
+	Assets []struct {
+		Name        string `json:"name"`
 		DownloadURL string `json:"browser_download_url"`
 	} `json:"assets"`
 }
@@ -100,4 +100,3 @@ func downloadLatestProtonRelease(releaseInfo *Response) error {
 
 	return nil
 }
-

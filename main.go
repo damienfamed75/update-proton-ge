@@ -35,4 +35,3 @@ func main() {
 		log.Fatal().Err(err).Msg("install or update")
 	}
 }
-

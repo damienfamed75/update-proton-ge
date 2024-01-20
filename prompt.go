@@ -16,7 +16,7 @@ import (
 func prompt(msg string, defaultYes bool) bool {
 	var decisions strings.Builder
 	if defaultYes {
-		decisions.WriteString("[Yy(default)] [Nn]")	
+		decisions.WriteString("[Yy(default)] [Nn]")
 	} else {
 		decisions.WriteString("[Yy] [Nn(default)]")
 	}
